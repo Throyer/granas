@@ -1,0 +1,66 @@
+services:
+  database:
+    image: postgres:13
+    restart: unless-stopped
+    container_name: database
+    command:
+      [
+        "postgres",
+        "-c",
+        "log_statement=all",
+        "-c",
+        "log_destination=stderr",
+        "-p",
+        "${DB_PORT}"
+      ]
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      TZ: ${TIMEZONE}
+      PGTZ: ${TIMEZONE}
+    volumes:
+      - ~/.volumes/users/database/postgresql:/var/lib/postgresql/data
+    networks:
+      - server_network
+    tty: true
+
+  api:
+    build:
+      context: ../server
+      dockerfile: ../.docker/Dockerfile
+    image: throyer/granas-api/dev:latest
+    container_name: granas-api
+    links:
+      - database
+    ports:
+      - "${API_PORT}:${API_PORT}"
+      - "${API_DEBUG_PORT}:${API_DEBUG_PORT}"
+    volumes:
+      - ../server:/app
+      - ~/.m2:/root/.m2
+    working_dir: /app
+    networks:
+      - server_network
+    tty: true
+    environment:
+      TZ: "${TIMEZONE}"
+      SERVER_PORT: "${API_PORT}"
+    env_file: ".env"
+    entrypoint: [
+      "dockerize",
+      "-wait",
+      "tcp://database:${DB_PORT}",
+      "-timeout",
+      "20s",
+      'mvn',
+      'spring-boot:run',
+      '-Dspring-boot.run.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,address=*:${API_DEBUG_PORT},suspend=n"'
+    ]
+
+networks:
+  server_network:
+    driver: bridge
+    name: granas
