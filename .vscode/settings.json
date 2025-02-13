@@ -1,18 +1,32 @@
 {
     "java.compile.nullAnalysis.mode": "disabled",
     "cSpell.words": [
+        "agentlib",
+        "autoremove",
         "configuracoes",
         "datasource",
+        "deamon",
+        "Dskip",
+        "Dspring",
         "github",
         "hashid",
         "hashids",
         "hmac",
         "jdbc",
+        "jdwp",
         "jsonwebtoken",
         "Jwts",
         "lombok",
+        "nginx",
+        "nodelay",
+        "openssl",
+        "PGTZ",
         "postgresql",
+        "sendfile",
         "springdoc",
-        "springframework"
+        "springframework",
+        "temurin",
+        "throyer",
+        "xzvf"
     ]
 }
