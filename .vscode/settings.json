@@ -1,0 +1,18 @@
+{
+    "java.compile.nullAnalysis.mode": "disabled",
+    "cSpell.words": [
+        "configuracoes",
+        "datasource",
+        "github",
+        "hashid",
+        "hashids",
+        "hmac",
+        "jdbc",
+        "jsonwebtoken",
+        "Jwts",
+        "lombok",
+        "postgresql",
+        "springdoc",
+        "springframework"
+    ]
+}
