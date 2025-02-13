@@ -22,7 +22,7 @@ services:
       TZ: ${TIMEZONE}
       PGTZ: ${TIMEZONE}
     volumes:
-      - ~/.volumes/users/database/postgresql:/var/lib/postgresql/data
+      - ~/.volumes/granas/database/postgresql:/var/lib/postgresql/data
     networks:
       - server_network
     tty: true

@@ -1,0 +1,62 @@
+services:
+  database:
+    extends:
+      file: ../../docker-compose.yml
+      service: database
+    networks:
+      - server_network
+
+  api:
+    build:
+      context: ../../../server
+      dockerfile: ../.docker/configurations/build/Dockerfile
+    image: throyer/granas-api:latest
+    restart: unless-stopped
+    container_name: granas-api
+    links:
+      - database
+    env_file:
+      - ../../.env
+    networks:
+      - server_network
+    tty: true
+    entrypoint: [
+      "dockerize",
+      "-wait",
+      "tcp://database:${DB_PORT}",
+      "-timeout",
+      "20s",
+      "java",
+      "-jar",
+      "api.jar"
+    ]
+
+  api_gateway:
+    build:
+      context: ../nginx
+      dockerfile: Dockerfile
+    image: throyer/apigateway/dev:latest
+    container_name: api_gateway
+    ports:
+      - "${API_PORT}:80"
+    links:
+      - api
+    environment:
+      PROXY_PASS_URL: "http://api"
+      PROXY_REQUESTS_PER_SECOND_LIMIT: ${RATE_LIMIT_MAX_REQUESTS_PER_SECOND}
+      PROXY_BURST: 5
+    command: [
+      "dockerize",
+      "-wait",
+      "http://api",
+      "-timeout",
+      "20s",
+      "./entry.sh"
+    ]
+    networks:
+      - server_network
+
+networks:
+  server_network:
+    driver: bridge
+    name: granas
