@@ -1,4 +1,4 @@
-package com.github.granas.domain.authentication.swagger;
+package com.github.granas.domain.authentication.controllers.swagger;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

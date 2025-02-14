@@ -1,4 +1,4 @@
-FROM maven:3.9.9-eclipse-temurin-23 as BUILDER
+FROM maven:3.9.9-eclipse-temurin-23 AS builder
 
 WORKDIR /usr/src/app
 
@@ -15,7 +15,7 @@ ENV SERVER_PORT=80
 ENV DB_SHOW_SQL=false
 ENV DOCKERIZE_VERSION v0.6.1
 
-COPY --from=BUILDER /usr/src/app/target/*.jar ./api.jar
+COPY --from=builder /usr/src/app/target/*.jar ./api.jar
 
 RUN apk add --no-cache openssl
 

@@ -3,6 +3,9 @@ package com.github.granas.infra.configurations;
 import static io.swagger.v3.oas.models.security.SecurityScheme.In.HEADER;
 import static io.swagger.v3.oas.models.security.SecurityScheme.Type.HTTP;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,11 +15,12 @@ import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.security.SecurityScheme;
+import io.swagger.v3.oas.models.servers.Server;
 
 @Configuration
 public class SwaggerConfiguration {
   @Bean
-  public OpenAPI springShopOpenAPI() {
+  public OpenAPI springShopOpenAPI(@Value("${server.port}") String port) {
     return new OpenAPI()
     .info(new Info()
       .title("Granas API")
@@ -28,6 +32,9 @@ public class SwaggerConfiguration {
       .email("throyer.dev@gmail.com")
       .name("Renato Henrique")
       .url("https://github.com/Throyer")))
+    .servers(List.of(
+      new Server().url("http://localhost:8080")
+    ))
     .components(new Components()
       .addSecuritySchemes("jwt", new SecurityScheme()
       .bearerFormat("JWT")

@@ -2,6 +2,8 @@ package com.github.granas.domain.authentication.dtos;
 
 import java.time.LocalDateTime;
 
+import com.github.granas.domain.user.dtos.UserInformation;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 
@@ -9,8 +11,8 @@ import static io.swagger.v3.oas.annotations.media.Schema.RequiredMode.REQUIRED;
 
 @Getter
 public class Authentication {
-  // @Schema(requiredMode = REQUIRED)
-  // private final UserInformation user;
+  @Schema(requiredMode = REQUIRED)
+  private final UserInformation user;
 
   @Schema(example = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c", requiredMode = REQUIRED)
   private final String accessToken;
@@ -22,12 +24,12 @@ public class Authentication {
   private final LocalDateTime expiresAt;
 
   public Authentication(
-    // UserInformation user,
+    UserInformation user,
     String accessToken,
     String refreshToken,
     LocalDateTime expiresAt
   ) {
-    // this.user = user;
+    this.user = user;
     this.accessToken = accessToken;
     this.refreshToken = refreshToken;
     this.expiresAt = expiresAt;
