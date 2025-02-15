@@ -14,5 +14,4 @@ services:
       - ~/.m2/repository:/home/vscode/.m2/repository
       - ~/.ssh:/home/vscode/.ssh:ro
       - ~/.oh-my-zsh/custom:/home/vscode/.oh-my-zsh/custom:ro
-      - /var/run/docker.sock:/var/run/docker.sock
     entrypoint: "sleep infinity"
