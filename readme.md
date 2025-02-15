@@ -2,9 +2,12 @@
 
 > This project requires `Docker`
 
-## 🚨 Important, don't forget to grant execution permission to the scripts:
+## 🚨 Important, don't forget to grant execution permission to the scripts and create .env:
 ```
 chmod -R +x .docker/scripts
+```
+```
+cp .docker/.env.example .docker/.env
 ```
 ### Running project
 - run development mode

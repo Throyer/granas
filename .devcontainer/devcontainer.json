@@ -1,0 +1,30 @@
+{
+  "name": "development ubuntu",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "devcontainer",
+  "workspaceFolder": "/workspace/development",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/nils-geistmann/devcontainers-features/zsh:0": {
+      "plugins": "git zsh-autosuggestions fast-syntax-highlighting"
+    },
+    "ghcr.io/devcontainers/features/java:1": {
+      "mavenVersion": "3.9.9",
+      "installMaven": true,
+      "version": "21"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "streetsidesoftware.code-spell-checker",
+        "streetsidesoftware.code-spell-checker-portuguese-brazilian",
+        "editorconfig.editorconfig",
+        "redhat.vscode-xml",
+        "redhat.vscode-yaml"
+      ]
+    }
+  }
+}

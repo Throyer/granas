@@ -1,4 +1,4 @@
-FROM maven:3.9.9-eclipse-temurin-23 AS builder
+FROM maven:3.9.9-eclipse-temurin-21 AS builder
 
 WORKDIR /usr/src/app
 
@@ -7,7 +7,7 @@ COPY ./src ./src
 
 RUN --mount=type=cache,target=/root/.m2 mvn package -DskipTests
 
-FROM eclipse-temurin:23-alpine
+FROM eclipse-temurin:21-alpine
 
 WORKDIR /usr/src/app
 
