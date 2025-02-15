@@ -20,6 +20,7 @@
         "jooq",
         "jsonwebtoken",
         "Jwts",
+        "lazydocker",
         "lombok",
         "nginx",
         "nodelay",

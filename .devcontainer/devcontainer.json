@@ -13,6 +13,11 @@
       "mavenVersion": "3.9.9",
       "installMaven": true,
       "version": "21"
+    },
+    "ghcr.io/devcontainers-extra/features/asdf-package:1": {
+      "plugin": "lazydocker",
+      "pluginRepo": "https://github.com/comdotlinux/asdf-lazydocker.git",
+      "version": "latest"
     }
   },
   "customizations": {
