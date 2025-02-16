@@ -21,8 +21,7 @@ import org.springframework.test.web.servlet.MockMvc;
   "spring.datasource.url=jdbc:h2:mem:test;mode=PostgreSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1",
   "spring.datasource.username=sa",
   "spring.datasource.password=sa",
-  "swagger.username=",
-  "swagger.password=",
+  "swagger-security.enabled=false"
 })
 class SwaggerIntegrationTest {
 

@@ -1,6 +1,10 @@
 package com.github.throyer.granas.it.security;
 
+import static com.github.throyer.granas.it.fixtures.RoleFixture.roles;
 import static com.github.throyer.granas.it.fixtures.TokenFixtures.token;
+import static com.github.throyer.granas.it.fixtures.UserFixture.email;
+import static com.github.throyer.granas.it.fixtures.UserFixture.name;
+import static com.github.throyer.granas.it.fixtures.UserFixture.password;
 import static com.github.throyer.granas.it.fixtures.UserFixture.user;
 import static java.time.LocalDateTime.now;
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
@@ -64,7 +68,13 @@ public class JWTIntegrationTest {
   @DisplayName("deve retornar OK quando a senha estiver correta")
   void should_return_OK_when_password_is_correct() throws Exception {
 
-    var user = user();
+    var user = user(
+      null,
+      name(),
+      email(),
+      password(),
+      roles()
+    );
 
     var body = JSON.stringify(Map.of(
       "email", user.getEmail(),
@@ -82,7 +92,13 @@ public class JWTIntegrationTest {
   @Test
   @DisplayName("deve retornar FORBIDDEN quando a senha estiver incorreta")
   void should_return_FORBIDDEN_when_password_is_incorrect() throws Exception {
-    var user = repository.save(user());
+    var user = user(
+      null,
+      name(),
+      email(),
+      password(),
+      roles()
+    );
 
     var body = JSON.stringify(Map.of(
     "email", user.getEmail(),

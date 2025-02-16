@@ -18,8 +18,9 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 @TestPropertySource(properties = {
-  "swagger.username=test",
-  "swagger.password=test",
+  "swagger-security.enabled=true",
+  "swagger-security.username=test",
+  "swagger-security.password=test",
   "spring.datasource.driver-class-name=org.h2.Driver",
   "spring.datasource.url=jdbc:h2:mem:test;mode=PostgreSQL;DATABASE_TO_UPPER=false;DB_CLOSE_DELAY=-1",
   "spring.datasource.username=sa",

@@ -30,3 +30,7 @@ cp .docker/.env.example .docker/.env
   ```bash
   .docker/scripts/mvn verify -P integration-tests
   ```
+- delete all containers `🚨 this remove ALL containers not only related to project`
+  ```bash
+  docker rm -f $(docker ps -a -q)
+  ```
