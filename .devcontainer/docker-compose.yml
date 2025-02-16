@@ -7,8 +7,6 @@ services:
     environment:
       - DOCKER_HOST=unix:///var/run/docker.sock
       - DEBIAN_FRONTEND=noninteractive
-    ports:
-      - "2222:22"
     volumes:
       - ../:/workspace/development
       - ~/.m2/repository:/home/vscode/.m2/repository
