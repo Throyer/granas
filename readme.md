@@ -20,6 +20,11 @@ cp .docker/.env.example .docker/.env
   .docker/scripts/build up -d --force-recreate --build
   ```
 
+- delete all containers `🚨 this remove ALL running containers not only related to project`
+  ```bash
+  docker rm -f $(docker ps -a -q)
+  ```
+
 ### Running tests
 - run tests
   ```bash
@@ -30,7 +35,21 @@ cp .docker/.env.example .docker/.env
   ```bash
   .docker/scripts/mvn verify -P integration-tests
   ```
-- delete all containers `🚨 this remove ALL containers not only related to project`
+  
+  #### to run specific test using use the parameter `-Dtest=CLASS_NAME#METHOD_NAME`
+
+  - for example the integration test. creating a user:
+    ```bash
+    .docker/scripts/mvn test -Dtest=JWTIntegrationTest#should_not_accept_requests_with_token_expired -DfailIfNoTests=false -P integration-tests
+    ```
+
+### Migrations
+- Java based migrations
   ```bash
-  docker rm -f $(docker ps -a -q)
+  .docker/scripts/mvn migration:generate -Dname=my-migration-name
+  ```
+
+- SQL based migrations
+  ```bash
+  .docker/scripts/mvn migration:generate -Dname=my-migration-name -Dsql
   ```

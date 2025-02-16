@@ -1,19 +1,20 @@
 package com.github.throyer.granas.utils;
 
-import java.util.Objects;
+import static java.util.Objects.isNull;
+
 import java.util.stream.Stream;
 
 public class Strings {
   private Strings() { }
 
-  public static Boolean notNullOrBlank(String string) {
-    if (Objects.isNull(string)) {
-      return false;
+  public static Boolean isNullOrBlank(String text) {
+    if (isNull(text)) {
+      return true;
     }
-    return !string.isBlank();
+    return text.isBlank();
   }
 
-  public static Boolean noneOfThenNullOrEmpty(String... strings) {
-    return Stream.of(strings).allMatch(Strings::notNullOrBlank);
+  public static Boolean anyOfThenIsNullOrEmpty(String... candidates) {
+    return Stream.of(candidates).anyMatch(Strings::isNullOrBlank);
   }
 }

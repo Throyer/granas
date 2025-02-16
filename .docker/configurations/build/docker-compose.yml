@@ -17,6 +17,10 @@ services:
       - database
     env_file:
       - ../../.env
+    environment:
+      SWAGGER_SECURITY_ENABLED: true
+      SWAGGER_SECURITY_USERNAME: root
+      SWAGGER_SECURITY_PASSWORD: root
     networks:
       - server_network
     tty: true
