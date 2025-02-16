@@ -1,5 +1,6 @@
 package com.github.granas.shared.security;
 
+import static com.github.granas.shared.http.Responses.unauthorized;
 import static java.util.Objects.isNull;
 import static java.util.Optional.empty;
 import static java.util.Optional.ofNullable;
@@ -7,11 +8,15 @@ import static org.springframework.security.core.context.SecurityContextHolder.ge
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
+
+import com.github.granas.domain.user.persistence.models.Role;
 
 import lombok.Getter;
 
@@ -26,6 +31,23 @@ public class Authorized extends User {
 
   public UsernamePasswordAuthenticationToken getAuthentication() {
     return new UsernamePasswordAuthenticationToken(this, null, getAuthorities());
+  }
+
+  public Boolean hasId(Long id) {
+    return this.id.equals(id);
+  }
+
+  public Boolean hasAuthority(String authority) {
+    return this.getAuthorities().stream()
+      .anyMatch(role -> role.getAuthority().equalsIgnoreCase(authority));
+  }
+
+  public Boolean hasIdOrIsAdmin(Long id) {
+    if (hasAuthority(Role.ADM)) {
+      return true;
+    }
+    
+    return hasId(id);
   }
 
   @Override
@@ -48,5 +70,22 @@ public class Authorized extends User {
     }
 
     return empty();
+  }
+
+  public static void isPresent(Consumer<Authorized> consumer) {
+    current().ifPresent(consumer);
+  }
+
+  public static void checkAuthorityOrThrowUnauthorized(Function<Authorized, Boolean> check) {
+    var authorized = current()
+      .orElse(null);
+
+    if (isNull(authorized)) {
+      return;
+    }
+
+    if (!check.apply(authorized)) {
+      throw unauthorized("Not authorized.");
+    }
   }
 }
