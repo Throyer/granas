@@ -1,4 +1,4 @@
-# granas api
+# Granas API
 
 > This project requires `Docker`
 
@@ -36,12 +36,12 @@ cp .docker/.env.example .docker/.env
   .docker/scripts/mvn verify -P integration-tests
   ```
   
-  #### to run specific test using use the parameter `-Dtest=CLASS_NAME#METHOD_NAME`
+#### to run specific test using use the parameter `-Dtest=CLASS_NAME#METHOD_NAME`
 
-  - for example the integration test. creating a user:
-    ```bash
-    .docker/scripts/mvn test -Dtest=JWTIntegrationTest#should_not_accept_requests_with_token_expired -DfailIfNoTests=false -P integration-tests
-    ```
+- for example the integration test. authorization header:
+  ```bash
+  .docker/scripts/mvn test -Dtest=JWTIntegrationTest#should_not_accept_requests_with_token_expired -DfailIfNoTests=false -P integration-tests
+  ```
 
 ### Migrations
 - Java based migrations
