@@ -37,10 +37,13 @@ public class CreateAuthenticationWithEmailAndPasswordController {
       also happens when the `email` was not confirmed by the user.
     """,
     content = {
-    @Content(schema = @Schema(oneOf = {
-      UsernameOrPasswordInvalidResponse.class,
-      EmailNotConfirmedResponse.class
-    }))
+    @Content(schema = @Schema(
+      type = "object",
+      oneOf = {
+        UsernameOrPasswordInvalidResponse.class,
+        EmailNotConfirmedResponse.class
+      }
+    ))
   })
   @Operation(summary = "Create a jwt token")
   public ResponseEntity<Authentication> create(@RequestBody @Valid CreateAuthenticationWithEmailAndPassword body) {
