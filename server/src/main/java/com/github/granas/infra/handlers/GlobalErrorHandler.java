@@ -37,10 +37,13 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
       Some access problem in the request body, headers or token.
       See the message in the response for more details.
     """, content = {
-  @Content(schema = @Schema(oneOf = {
-    RequestWithoutAuthorizationResponse.class,
-    TokenExpiredInvalidResponse.class
-  }))
+  @Content(schema = @Schema(
+    type = "object",
+    oneOf = {
+      RequestWithoutAuthorizationResponse.class,
+      TokenExpiredInvalidResponse.class
+    }
+  ))
 })
 public class GlobalErrorHandler {
   @ResponseStatus(code = BAD_REQUEST)
