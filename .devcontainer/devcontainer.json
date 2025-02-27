@@ -6,14 +6,14 @@
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/git:1": {},
-		"ghcr.io/nils-geistmann/devcontainers-features/zsh:0": {
-			"theme": "robbyrussell"
-		},
-		"ghcr.io/devcontainers-extra/features/zsh-plugins:0": {
-			"plugins": "git docker zsh-autosuggestions fast-syntax-highlighting",
-			"omzPlugins": "https://github.com/zsh-users/zsh-autosuggestions https://github.com/zdharma-continuum/fast-syntax-highlighting",
-			"username": "vscode"
-		},
+    "ghcr.io/nils-geistmann/devcontainers-features/zsh:0": {
+      "theme": "robbyrussell"
+    },
+    "ghcr.io/devcontainers-extra/features/zsh-plugins:0": {
+      "plugins": "git docker zsh-autosuggestions fast-syntax-highlighting",
+      "omzPlugins": "https://github.com/zsh-users/zsh-autosuggestions https://github.com/zdharma-continuum/fast-syntax-highlighting",
+      "username": "vscode"
+    },
     "ghcr.io/devcontainers/features/java:1": {
       "mavenVersion": "3.9.9",
       "installMaven": true,

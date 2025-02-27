@@ -32,7 +32,6 @@ import lombok.AllArgsConstructor;
 @EnableWebSecurity
 @EnableMethodSecurity
 @AllArgsConstructor
-@SuppressWarnings("unused")
 public class SecurityConfiguration {
   private final AuthenticationMiddleware middleware;
   private final PasswordEncoder encoder;
