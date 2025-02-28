@@ -11,4 +11,5 @@ services:
       - ../:/workspace/development
       - ~/.ssh:/home/vscode/.ssh:ro
       - ~/.volumes/granas/.m2:/home/vscode/.m2
+      - ~/.volumes/granas/database/postgresql:/home/vscode/.volumes/granas/database/postgresql
     entrypoint: "sleep infinity"
