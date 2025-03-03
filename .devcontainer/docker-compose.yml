@@ -1,15 +1,14 @@
 services:
   devcontainer:
     image: mcr.microsoft.com/devcontainers/base:jammy
-    container_name: devcontainer
+    container_name: granas-development
     privileged: true
     restart: unless-stopped
     environment:
       - DOCKER_HOST=unix:///var/run/docker.sock
       - DEBIAN_FRONTEND=noninteractive
     volumes:
-      - ../:/workspace/development
+      - ../.docker/configurations/maven/settings.xml:/home/vscode/.m2/settings.xml:ro
+      - ..:/workspace/development:cached
       - ~/.ssh:/home/vscode/.ssh:ro
-      - ~/.volumes/granas/.m2:/home/vscode/.m2
-      - ~/.volumes/granas/database/postgresql:/home/vscode/.volumes/granas/database/postgresql
     entrypoint: "sleep infinity"

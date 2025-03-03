@@ -22,7 +22,7 @@ services:
       TZ: ${TIMEZONE}
       PGTZ: ${TIMEZONE}
     volumes:
-      - ~/.volumes/granas/database/postgresql:/var/lib/postgresql/data
+      - ./.volumes/database/postgresql:/var/lib/postgresql/data
     networks:
       - server_network
     tty: true
@@ -40,7 +40,7 @@ services:
       - "${API_DEBUG_PORT}:${API_DEBUG_PORT}"
     volumes:
       - ../server:/app
-      - ~/.m2:/root/.m2
+      - ./.volumes/maven/repository:/root/.m2/repository
     working_dir: /app
     networks:
       - server_network

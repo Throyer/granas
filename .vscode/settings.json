@@ -1,4 +1,5 @@
 {
+  "java.configuration.maven.userSettings": ".docker/configurations/maven/settings.xml",
   "java.compile.nullAnalysis.mode": "disabled",
   "java.configuration.updateBuildConfiguration": "automatic",
   "cSpell.words": [
@@ -12,6 +13,7 @@
     "Dspring",
     "dtos",
     "fasterxml",
+    "geistmann",
     "github",
     "hashid",
     "hashids",
@@ -25,10 +27,13 @@
     "lombok",
     "nginx",
     "nodelay",
+    "noninteractive",
     "openssl",
     "PGTZ",
+    "postgres",
     "postgresql",
     "redhat",
+    "robbyrussell",
     "sendfile",
     "springboot",
     "springdata",
